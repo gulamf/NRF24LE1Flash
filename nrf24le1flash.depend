@@ -1,0 +1,42 @@
+# depslib dependency file v1.0
+1488908832 source:/home/user/Documents/cpp/nrf24le1flash/main.cpp
+	<stdio.h>
+	<stdio.h>
+	<stdlib.h>
+	<unistd.h>
+	<iostream>
+	<fcntl.h>
+	<errno.h>
+	<termios.h>
+	<string>
+	<string.h>
+	<fstream>
+	<sys/ioctl.h>
+	<stdint.h>
+	<vector>
+	"misc.h"
+	"HexUtils.h"
+
+1488937180 /home/user/Documents/cpp/nrf24le1flash/include/misc.h
+	<sstream>
+	<iomanip>
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<unistd.h>
+
+1488897255 /home/user/Documents/cpp/nrf24le1flash/include/HexUtils.h
+
+1488905135 source:/home/user/Documents/cpp/nrf24le1flash/src/HexUtils.cpp
+	<string.h>
+	<string>
+	<vector>
+	<iostream>
+	<fstream>
+	<stdint.h>
+	"HexUtils.h"
+	"misc.h"
+
+1488905304 source:/home/user/Documents/cpp/nrf24le1flash/src/misc.cpp
+	"misc.h"
+
