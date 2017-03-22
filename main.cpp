@@ -149,7 +149,7 @@ bool processCommandLine(int argc, char **argv) {
                 return false;
             } else {
                 if(strcmp(argv[i+1],"DTR")==0) { resetpin = DTR; continue; };
-                if(strcmp(argv[i+1],"CTS")==0) { resetpin = RTS; continue; };
+                if(strcmp(argv[i+1],"RTS")==0) { resetpin = RTS; continue; };
                 cout << "Errror: invalid reset specified " << argv[i+1] << "\n";
                 return false;
             }
