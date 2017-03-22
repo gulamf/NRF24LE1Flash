@@ -1234,10 +1234,10 @@ int main(int argc, char **argv)
     if(argc==1) usage();
     if(!processCommandLine(argc, argv)) exit(0);
     if(command==C_CHECK) {
-        CheckUC();
+        if(!CheckUC()) return -1;
     } else
     {
-        ProgramUC();
+        if(!ProgramUC()) return -1;
     }
 
     return 0;
