@@ -105,7 +105,7 @@ bool processCommandLine(int argc, char **argv) {
                 port = argv[i+1];
             }
         }
-        if(strcmp(argv[i],"-bl")==0) {
+        if(strcmp(argv[i],"-b")==0) {
             if( i + 1 == argc ) {
                 cout << "Error: baudrate not specified.\n";
             } else {
@@ -154,7 +154,7 @@ bool processCommandLine(int argc, char **argv) {
                 return false;
             }
         }
-        if(strcmp(argv[i],"-b")==0) {
+        if(strcmp(argv[i],"-bl")==0) {
             if( i + 1 == argc ) {
                 cout << "Error: reset not specified.\n";
                 return false;
@@ -162,7 +162,7 @@ bool processCommandLine(int argc, char **argv) {
 
                 if(strcmp(argv[i+1],"DISABLED")==0) { blenabled = DISABLED; continue; };
                 if(strcmp(argv[i+1],"DTR")==0) { blenabled = DTR; continue; };
-                if(strcmp(argv[i+1],"CTS")==0) { blenabled = RTS; continue; };
+                if(strcmp(argv[i+1],"RTS")==0) { blenabled = RTS; continue; };
                 cout << "Errror: invalid blenabled specified " << argv[i+1] << "\n";
                 return false;
             }
@@ -178,6 +178,10 @@ bool processCommandLine(int argc, char **argv) {
                 cout << "Errror: invalid command specified " << argv[i+1] << "\n";
                 return false;
             }
+        }
+        if(strcmp(argv[i],"-h")==0 | strcmp(argv[i],"--help")==0 ) {
+            usage();
+            exit(0);
         }
     }
     if(hexfile.compare("")==0 && command == C_FLASH) {
@@ -424,7 +428,6 @@ BLCommandReturnType ExecuteCommandStartBootloader()
 
     //reset the chip
     ResetDevice();
-
 
     //send the start byte
     if (WriteSerialByte((unsigned char)BLCommand_Start) != BLCommandReturnType_OK)
@@ -1228,7 +1231,7 @@ bool ProgramUC()
 
 int main(int argc, char **argv)
 {
-    if(argc==0) usage();
+    if(argc==1) usage();
     if(!processCommandLine(argc, argv)) exit(0);
     if(command==C_CHECK) {
         CheckUC();
