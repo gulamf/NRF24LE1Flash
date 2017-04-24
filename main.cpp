@@ -82,7 +82,7 @@ void usage() {
     cout << "-p port, port device\n\t-default /dev/ttyUSB0 \n";
     cout << "-b baudrate, UART speed\n\t-default 38400 \n";
     cout << "-r reset, reset pin DTR or RTS\n\t-default DTR\n";
-    cout << "-bl BL_enabled, DISABLED or DTR or RTS\n\t-default DISBALED";
+    cout << "-bl BL_enabled, DISABLED or DTR or RTS\n\t-default DISBALED\n";
     cout << "-c command, CHECK, FLASH\n\t-default CHECK\n";
     cout << "\nVersion " << version << "\n";
 }
