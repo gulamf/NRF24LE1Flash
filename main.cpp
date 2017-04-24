@@ -360,6 +360,7 @@ BLCommandReturnType WriteSerialByte(unsigned char buffer)
     {
         write(progSerPort,&buffer,1);
         fsync(progSerPort);
+	sleep_ms(1);
         return BLCommandReturnType_OK;
     }
     catch(...)
