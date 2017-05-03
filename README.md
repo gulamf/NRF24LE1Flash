@@ -6,7 +6,7 @@ Once the NRF24LE1 has the bootloader loaded, it can be programmed in situ using 
 
 # Prerequisites
 To use this tool the NRF24LE1 chip has to be flashed with the bootloader.</br>
-The bootloader is can be downloaded from here http://www.diyembedded.com/bootloader/micro/nrf24le1/nrf24le1_chip_bootloader.zip</br>
+The bootloader can be downloaded from here http://www.diyembedded.com/bootloader/micro/nrf24le1/nrf24le1_chip_bootloader.zip</br>
 
 I use https://github.com/DeanCording/nRF24LE1_Programmer to get the bootloader onto the NRF24LE1.</br>
 Dean's programmer uses SPI to flash the NRF24LE1.</br>
