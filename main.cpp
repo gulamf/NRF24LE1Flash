@@ -83,7 +83,7 @@ void usage() {
     cout << "-p port, port device\n\t-default /dev/ttyUSB0 \n";
     cout << "-b baudrate, UART speed\n\t-default 38400 \n";
     cout << "-r reset, reset pin DTR, RTS or CTS\n\t-default DTR\n";
-    cout << "-bl BL_enabled, DISABLED or DTR or RTS\n\t-default DISBALED\n";
+    cout << "-bl BL_enabled, DISABLED or DTR or RTS\n\t-default DISABLED\n";
     cout << "-c command, CHECK, FLASH\n\t-default CHECK\n";
     cout << "\nVersion " << version << "\n";
 }
@@ -140,7 +140,7 @@ bool processCommandLine(int argc, char **argv) {
                 if(strcmp(argv[i+1],"3000000")==0) { baudrate = B3000000; continue;};
                 if(strcmp(argv[i+1],"3500000")==0) { baudrate = B3500000; continue;};
                 if(strcmp(argv[i+1],"4000000")==0) { baudrate = B4000000; continue;};
-                cout << "Errror: invalid baudrate " << argv[i+1] << "\n";
+                cout << "Error: invalid baudrate " << argv[i+1] << "\n";
                 return false;
             }
         }
@@ -152,7 +152,7 @@ bool processCommandLine(int argc, char **argv) {
                 if(strcmp(argv[i+1],"DTR")==0) { resetpin = DTR; continue; };
                 if(strcmp(argv[i+1],"RTS")==0) { resetpin = RTS; continue; };
                 if(strcmp(argv[i+1],"CTS")==0) { resetpin = CTS; continue; };
-                cout << "Errror: invalid reset specified " << argv[i+1] << "\n";
+                cout << "Error: invalid reset specified " << argv[i+1] << "\n";
                 return false;
             }
         }
@@ -165,7 +165,7 @@ bool processCommandLine(int argc, char **argv) {
                 if(strcmp(argv[i+1],"DISABLED")==0) { blenabled = DISABLED; continue; };
                 if(strcmp(argv[i+1],"DTR")==0) { blenabled = DTR; continue; };
                 if(strcmp(argv[i+1],"RTS")==0) { blenabled = RTS; continue; };
-                cout << "Errror: invalid blenabled specified " << argv[i+1] << "\n";
+                cout << "Error: invalid blenabled specified " << argv[i+1] << "\n";
                 return false;
             }
         }
@@ -177,7 +177,7 @@ bool processCommandLine(int argc, char **argv) {
 
                 if(strcmp(argv[i+1],"CHECK")==0) { command = C_CHECK; continue; };
                 if(strcmp(argv[i+1],"FLASH")==0) { command = C_FLASH; continue; };
-                cout << "Errror: invalid command specified " << argv[i+1] << "\n";
+                cout << "Error: invalid command specified " << argv[i+1] << "\n";
                 return false;
             }
         }
@@ -338,7 +338,7 @@ void ResetDevice()
         sleep_ms(1);
     }
 
-    //Disble the reset signal, which returns the device to the normal state
+    //Disable the reset signal, which returns the device to the normal state
     if (resetpin == RTS)
     {
         RtsSet(progSerPort,false);
