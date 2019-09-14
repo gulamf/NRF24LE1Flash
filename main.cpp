@@ -17,7 +17,7 @@
 #include "HexUtils.h"
 using namespace std;
 
-string version="0.1";
+string version = "0.2";
 
 enum BLCommand {
     BLCommand_Start				= 's',
@@ -51,6 +51,7 @@ enum ResetPin
     DISABLED,
     DTR,
     RTS,
+    CTS,
 };
 
 enum Command
@@ -81,7 +82,7 @@ void usage() {
     cout << "-f [hexfile], path to hex file\n";
     cout << "-p port, port device\n\t-default /dev/ttyUSB0 \n";
     cout << "-b baudrate, UART speed\n\t-default 38400 \n";
-    cout << "-r reset, reset pin DTR or RTS\n\t-default DTR\n";
+    cout << "-r reset, reset pin DTR, RTS or CTS\n\t-default DTR\n";
     cout << "-bl BL_enabled, DISABLED or DTR or RTS\n\t-default DISBALED\n";
     cout << "-c command, CHECK, FLASH\n\t-default CHECK\n";
     cout << "\nVersion " << version << "\n";
@@ -150,6 +151,7 @@ bool processCommandLine(int argc, char **argv) {
             } else {
                 if(strcmp(argv[i+1],"DTR")==0) { resetpin = DTR; continue; };
                 if(strcmp(argv[i+1],"RTS")==0) { resetpin = RTS; continue; };
+                if(strcmp(argv[i+1],"CTS")==0) { resetpin = CTS; continue; };
                 cout << "Errror: invalid reset specified " << argv[i+1] << "\n";
                 return false;
             }
@@ -293,6 +295,15 @@ void DtrSet(int fd, bool value) {
     }
 }
 
+void CtsSet(int fd, bool value) {
+    int sercmd = TIOCM_CTS;
+    if(value) {
+        ioctl(fd, TIOCMBIS, &sercmd); // Set the CTS pin.
+    } else {
+        ioctl(fd, TIOCMBIC, &sercmd); // Reset the CTS pin.
+    }
+}
+
 void ResetDevice()
 {
     //Enable the reset signal, which will put the chip in reset (the reset signal must be either RTS or DTR)
@@ -300,6 +311,10 @@ void ResetDevice()
     {
 
         RtsSet(progSerPort,true);
+    }
+    else if(resetpin = CTS)
+    {
+        CtsSet(progSerPort,true);
     }
     else
     {
@@ -327,6 +342,10 @@ void ResetDevice()
     if (resetpin == RTS)
     {
         RtsSet(progSerPort,false);
+    }
+    else if(resetpin = CTS)
+    {
+        CtsSet(progSerPort,false);
     }
     else
     {
