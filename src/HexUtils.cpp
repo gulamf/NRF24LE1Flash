@@ -122,12 +122,12 @@ vector<HexRecord> *HexUtils::ParseHexFile(string fileName, string &debugInfo)
             debugInfo += "\tNo data\r\n";
         }
 
-        curHexRecord.checkSum = ParseHex<int>(curHexRecord.rawStr.substr(curHexRecord.rawStr.length()- 2, 2));
+        curHexRecord.checkSum = ParseHex<int>(curHexRecord.rawStr.substr(9 + (curHexRecord.len * 2), 2));
         debugInfo += "\tRecord checksum: 0x" + ToHexString(curHexRecord.checkSum) + "\r\n";
 
         curHexRecord.calcSum = 0;
 
-        for (uint x = 1; x < curHexRecord.rawStr.length() - 2; x += 2)
+        for (uint x = 1; x < 9 + (curHexRecord.len * 2); x += 2)
         {
             curHexRecord.calcSum += ParseHex<int>(curHexRecord.rawStr.substr(x, 2));
         }
