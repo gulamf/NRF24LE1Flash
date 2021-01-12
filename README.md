@@ -42,6 +42,9 @@ Usage : nrf24le1flash -f hexfile -p port -b baudrate -r reset -b BL_enabled -c c
 
 ## Changelog
 
-#### 0.2 09/14/2019
-- Add ability to use CTS as a reset pin
-- Add makefile instead of CodeBlocks IDE stuff
+#### 1.1.1 04/19/2020
+- Fix parsing hex file with linux line endings `\n`.
+
+#### 1.1.0 09/14/2019
+- Add ability to use CTS as a reset pin.
+- Add makefile instead of CodeBlocks IDE stuff.
